@@ -20,6 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// 此处需在引入 Vue 之后引入
+require('./components/SelectDistrict');
+require('./components/UserAddressesCreateAndEdit');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
