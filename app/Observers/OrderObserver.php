@@ -7,17 +7,9 @@ use Illuminate\Support\Facades\Log;
 
 class OrderObserver
 {
-    public function creating(Order $order)
+    public function saving(Order $order)
     {
-        // 如果模型的 no 字段为空
-        if (!$order->no) {
-            // 调用 findAvailableNo 生成订单流水号
-            $order->no = static::findAvailableNo();
-            // 如果生成失败，则终止创建订单
-            if (!$order->no) {
-                return false;
-            }
-        }
+
     }
 
     public static function findAvailableNo()
