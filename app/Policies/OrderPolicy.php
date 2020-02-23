@@ -10,7 +10,7 @@ class OrderPolicy
 {
     use HandlesAuthorization;
 
-    public function __construct(User $user, Order $order)
+    public function own(User $user, Order $order)
     {
         return $user->id == $order->user_id;
     }
