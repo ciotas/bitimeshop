@@ -27,7 +27,7 @@ class PaymentController extends Controller
         ]);
     }
 
-    // 前端回调页面
+    // 客户端回调页面
     public function alipayReturn()
     {
         try {
@@ -42,8 +42,8 @@ class PaymentController extends Controller
     // 服务器端回调
     public function alipayNotify()
     {
-        $data = app('alipay')->verify();
-        Log::debug('Alipay notify', $data->all());
+        // 校验输入参数
+        $data  = app('alipay')->verify();
         // 如果订单状态不是成功或者结束，则不走后续的逻辑
         // 所有交易状态：https://docs.open.alipay.com/59/103672
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
@@ -60,6 +60,7 @@ class PaymentController extends Controller
             // 返回数据给支付宝
             return app('alipay')->success();
         }
+
         $order->update([
             'paid_at'        => Carbon::now(), // 支付时间
             'payment_method' => 'alipay', // 支付方式

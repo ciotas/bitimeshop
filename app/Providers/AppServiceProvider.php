@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Logger;
 use Yansongda\Pay\Pay;
-use function foo\func;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('alipay', function () {
             $config = config('pay.alipay');
-            $config['notify_url'] = 'http://requestbin.net/r/y2nus9y2';//route('payment.alipay.notify');
+            $config['notify_url'] = route('payment.alipay.notify');
             $config['return_url'] = route('payment.alipay.return');
             if (app()->environment() != 'production') {
                 $config['mode']         = 'dev';
