@@ -3,9 +3,7 @@
 namespace App\Http\Requests;
 
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class ApplyRefundRequest extends FormRequest
+class ApplyRefundRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
